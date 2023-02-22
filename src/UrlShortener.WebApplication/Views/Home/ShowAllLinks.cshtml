@@ -1,0 +1,27 @@
+﻿@model List<UrlModel>;
+
+@{
+    ViewData["Title"] = "All Links";
+}
+
+@foreach (var url in Model)
+{
+    <ul>
+        <li>
+            <span class="col-md-2">
+                <strong>Original URL:</strong>
+            </span>
+            <a href="@url.OriginalUrl">
+                @url.OriginalUrl
+            </a>
+        </li>
+        <li>
+            <span class="col-md-2">
+                <strong>Short URL:</strong>
+            </span>
+            <a asp-action="RedirectTo" asp-route-path="@url.Token">
+                @url.ShortUrl
+            </a>
+        </li>
+    </ul>
+}

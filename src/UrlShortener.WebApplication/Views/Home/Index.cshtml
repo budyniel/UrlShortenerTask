@@ -1,0 +1,48 @@
+﻿@model UrlModel;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-action="ShortenUrl">
+    <div class="form-horizontal">
+        <div class="input-group input-group-lg">
+            <input asp-for="OriginalUrl" class="form-control" placeholder="Paste the URL to be shorten..." />
+            <span asp-validation-for="OriginalUrl" class="text-danger"></span>
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Make Me Shorter!</button>
+            </span>
+        </div>
+    </div>
+</form>
+
+
+<br />
+
+<p>You can see below the details of this short URL.</p>
+
+<br />
+
+@if (Model != null)
+{
+    <ul>
+        <li>
+            <span class="col-md-2">
+                <strong>Original URL:</strong>
+            </span>
+            <a href="@Model.OriginalUrl">
+                @Model.OriginalUrl
+            </a>
+        </li>
+        <li>
+            <span class="col-md-2">
+                <strong>Short URL:</strong>
+            </span>
+            <a asp-action="RedirectTo" asp-route-path="@ViewData["Path"]">
+                @Model.ShortUrl
+            </a>
+        </li>
+    </ul>
+}
+
+
